@@ -61,8 +61,7 @@ class Sphere():
   # compute volume of a Sphere
   # returns a floating point number
     def volume(self):
-        self.volume = math.pi * (4/3) * (self.radius ** 3)
-        return self.volume
+        return math.pi * (4/3) * (self.radius ** 3)
 
   # determines if a Point is strictly inside the Sphere
   # p is Point object
@@ -116,8 +115,7 @@ class Cube():
   # compute volume of a Cube
   # returns a floating point number
     def volume(self):
-        self.volume = self.side ** 3
-        return self.volume
+        return self.side ** 3
 
   # determines if a Point is strictly inside this Cube
   # p is a point object
@@ -149,17 +147,25 @@ class Cube():
   # other is a Cube object
   # returns a Boolean
     def is_inside_cube(self, other):
-         # implement here ...
+        # calculate the didtance between the centers of the two cubes 
+        dist_centers = self.center.distance(other.center)
 
-          return True 
+        # check if the other cube fits inside the current cube
+        if (dist_centers + other.side / 2) <= (self.side / 2):
+            return False
+        else:
+            return True 
 
 
 # Implement this Method
 # Checks if two shapes, cubes or sphere have the same volume
     def has_same_volume(self, other) -> bool:
-        # implement here ...
-        
-
-        return True
+        # compare volumes of the two objects
+        if isinstance(other, Cube):
+            return self.volume() == other.volume()
+        elif isinstance(other, Sphere):
+            return self.volume() == other.volume()
+        else:
+            return False
 
 
