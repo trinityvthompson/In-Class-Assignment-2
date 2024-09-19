@@ -31,37 +31,40 @@ class TestGeometry(unittest.TestCase):
 
     #TODO! Implement this 
     def test_002_point_equality(self):
-        # ... Implement here and remove pass 
-        pass
+        self.assertTrue(self.origin == Point(0,0,0))
+        self.assertTrue(self.one_above_origin == Point(0, 1, 0))
+        self.assertTrue(self.one_under_origin == Point(0, -1, 0))
+        self.assertTrue(self.out_point == Point(0, 1000, 0))
 
     #TODO! Implement this 
     def test_003_sphere_area(self):
-        pass 
+        self.assertAlmostEqual(self.one_radius_sphere.area(), math.pi * 4 * (1 ** 2)) 
+        self.assertAlmostEqual(self.ten_radius_sphere.area(), math.pi * 4 * (10 ** 2)) 
 
-    
     #TODO! Implement this 
     def test_004_sphere_volume(self):
-        pass
+        self.assertAlmostEqual(self.one_radius_sphere.volume(), math.pi * (4/3) * (1 ** 3))
+        self.assertAlmostEqual(self.ten_radius_sphere.volume(), math.pi * (4/3) * (10 ** 3))
 
     #TODO! Implement this 
     def test_005_sphere_is_inside_point(self):
-        pass
-
+        self.assertTrue(self.one_radius_sphere.is_inside_point(self.origin))
+        self.assertFalse(self.ten_radius_sphere.is_inside_point(self.out_point))
 
     #TODO! Implement this 
     def test_006_sphere_is_inside_sphere(self):
-        pass
-
+        self.assertFalse(self.one_radius_sphere.is_inside_sphere(self.ten_radius_sphere))
+        self.assertTrue(self.ten_radius_sphere.is_inside_sphere(self.one_radius_sphere))
 
    #TODO! Implement this 
     def test_006_cube_is_inside_point(self):
-        pass
+        self.assertTrue(self.one_cube.is_inside_point(self.origin))
+        self.assertFalse(self.ten_cube.is_inside_point(self.out_point))
 
    #TODO! Implement this 
     def test_007_is_inside_sphere(self):
-        pass
-
-
+        self.assertTrue(self.ten_cube.is_inside_sphere(self.one_radius_sphere))
+        self.assertFalse(self.one_cube.is_inside_sphere(self.ten_radius_sphere))
 
 # Here we have the test but we do not have the implementation of the method is_inside_cube()
 # 
@@ -70,12 +73,12 @@ class TestGeometry(unittest.TestCase):
     def test_000_is_inside_cube(self):
         self.assertTrue(self.one_cube.is_inside_cube(self.ten_cube))
         self.assertFalse(self.one_cube.is_inside_cube(self.one_cube))
-
+        
     def test_000_has_same_volume(self): 
         self.assertTrue(self.one_cube.has_same_volume(self.one_cube)) 
 
 
-
+        
 
 if __name__ == '__main__':
     unittest.main()
